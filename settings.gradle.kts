@@ -1,0 +1,2 @@
+rootProject.name = "bouldering-proxy"
+
