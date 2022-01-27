@@ -42,10 +42,10 @@ class BoulderingBookingController(
         bookingRequest: SlotBookingRequestDTO
     ) {
         println(bookingRequest)
-//
-//        boulderingBookingService.bookSlot(
-//            bookingRequest
-//        )
+
+        boulderingBookingService.bookSlot(
+            bookingRequest.toEntity()
+        )
     }
 
 }
