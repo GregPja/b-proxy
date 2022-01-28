@@ -24,7 +24,10 @@ class BoulderingBookingServiceImpl(
 
     override fun getAllFreeSlots(from: OffsetDateTime, to: OffsetDateTime): Map<String, Collection<SlotInfo>> {
         return runBlocking {
-            serviceMap.entries.pmap { (key, value) -> key to value.getFreeSlots(from, to) }.toMap()
+            serviceMap.entries.map { (key, value) ->
+                println(value.name)
+                key to value.getFreeSlots(from, to)
+            }.toMap()
         }
     }
 

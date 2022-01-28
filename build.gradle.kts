@@ -12,7 +12,7 @@ plugins {
 group = "b.proxy"
 version = "1.0-SNAPSHOT"
 
-val springVersion = "2.6.1"
+val springVersion = "2.6.2"
 
 repositories {
     mavenCentral()
@@ -22,13 +22,14 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:$springVersion")
     //implementation("org.springframework.boot:spring-boot-starter-jooq:$springVersion")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
+    implementation("org.jsoup:jsoup:1.14.3")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.github.jkcclemens:khttp:-SNAPSHOT")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.0")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.6.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springVersion")
-    testImplementation("org.mockito:mockito-inline:4.1.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
     ktlint("com.pinterest:ktlint:0.43.2") {
         attributes {
             attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
