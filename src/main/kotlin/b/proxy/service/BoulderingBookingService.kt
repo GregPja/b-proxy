@@ -3,6 +3,7 @@ package b.proxy.service
 import b.proxy.api.dto.SlotRequest
 import b.proxy.service.entity.SlotInfo
 import b.proxy.service.user.UserService
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -23,8 +24,8 @@ class BoulderingBookingServiceImpl(
     private val serviceMap: Map<String, BoulderingService> = boulderingServices.associateBy { it.name }
 
     override fun getAllFreeSlots(from: OffsetDateTime, to: OffsetDateTime): Map<String, Collection<SlotInfo>> {
-        return runBlocking {
-            serviceMap.entries.map { (key, value) ->
+        return runBlocking(Dispatchers.Default) {
+            serviceMap.entries.pmap { (key, value) ->
                 println(value.name)
                 key to value.getFreeSlots(from, to)
             }.toMap()
