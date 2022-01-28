@@ -39,14 +39,15 @@ class BoulderingServiceConfiguration(
                     urbanSportClubTariffId = it.urbanSportClubTariffId,
                     origin = it.origin
                 )
-            } + boulderingConfiguration.webClimber.map {
-            WebClimberService(
-                name = it.name,
-                webClimberClient = webClimberClient,
-                webClimberId = it.webClimberId,
-                specialPath = it.specialPath
-            )
-        }
+            } + boulderingConfiguration.webClimber.filter { it.active }
+            .map {
+                WebClimberService(
+                    name = it.name,
+                    webClimberClient = webClimberClient,
+                    webClimberId = it.webClimberId,
+                    specialPath = it.specialPath
+                )
+            }
     }
 
 }
@@ -72,6 +73,7 @@ data class DrPlanoServiceConfiguration(
 data class WebClimberConfiguration(
     val name: String,
     val webClimberId: Int,
-    val specialPath: String
+    val specialPath: String,
+    val active: Boolean
 )
 

@@ -10,13 +10,14 @@ class WebClimberService(
     override val name: String,
     private val webClimberClient: WebClimberClient,
     private val webClimberId: Int,
-    private val specialPath: String
+    private val specialPath: String,
 ) : BoulderingService {
     override fun getFreeSlots(from: OffsetDateTime, to: OffsetDateTime): Collection<SlotInfo> {
         return webClimberClient.getAllAvailableSlotsFor(from, webClimberId, specialPath)
     }
 
     override fun bookSlot(user: BoulderUser, slotInfo: SlotRequest) {
-        TODO("Not yet implemented")
+
+        //val token = webClimberClient.getSessionData(slotInfo.start, specialPath, webClimberId)
     }
 }
