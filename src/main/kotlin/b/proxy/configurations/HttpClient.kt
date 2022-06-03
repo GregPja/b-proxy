@@ -25,10 +25,16 @@ class HttpClient {
     ): Response {
         return khttp.post(
             url = url,
-            data = body,
-            headers = headers + ("Content-Type" to "application/json"),
+            json = body,
+            headers = headers + mapOf(
+                "Content-Type" to "application/json",
+                "Content-Length" to "${body?.toString()?.length ?: "0"}"
+            ),
             params = params.mapValues { it.value.toString() }
-        ).also { println("POST -> ${it.url}") }
+        ).also {
+            println("POST -> ${it.url}")
+            println("Headers -> ${it.headers}")
+        }
     }
 
     fun option(

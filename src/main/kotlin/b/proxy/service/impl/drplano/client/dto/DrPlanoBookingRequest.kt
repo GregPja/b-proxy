@@ -32,16 +32,16 @@ data class DrPlanoBookingRequest(
                 clientId = clientId,
                 shiftModelId = shiftModelId,
                 shiftSelector = shiftSelector,
-                dateOfBirthString = DateTimeFormatter.ofPattern("dd.MM.yyyy").format(user.dateOfBirth),
-                streetAndHouseNumber = user.streetName,
-                postalCode = user.postalCode,
-                city = user.city,
-                phoneMobile = user.phoneNumber,
+                dateOfBirthString = "1980-01-01",//DateTimeFormatter.ofPattern("dd.MM.yyyy").format(user.dateOfBirth),
+                streetAndHouseNumber = "-",//user.streetName,
+                postalCode = "00000",//user.postalCode,
+                city = "-",//user.city,
+                phoneMobile = "-",//user.phoneNumber,
                 participants = listOf(DrPlanoParticipant(user, urbanSportClubTariffId)),
                 firstName = user.firstName,
                 lastName = user.lastName,
                 email = user.email,
-                dateOfBirth = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(user.dateOfBirth),
+                dateOfBirth = "1980-1-1"//DateTimeFormatter.ofPattern("yyyy-MM-dd").format(user.dateOfBirth),
             )
 }
 
@@ -58,11 +58,11 @@ data class DrPlanoParticipant(
 
     constructor(user: BoulderUser, urbanSportClubTariffId: Int) : this(
         tariffId = urbanSportClubTariffId,
-        dateOfBirthString = DateTimeFormatter.ofPattern("dd.MM.yyyy").format(user.dateOfBirth),
+        dateOfBirthString = "1980-01-01",//DateTimeFormatter.ofPattern("dd.MM.yyyy").format(user.dateOfBirth),
         firstName = user.firstName,
         lastName = user.lastName,
         email = user.email,
         additionalFieldValue = user.urbanSportClubId,
-        dateOfBirth = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(user.dateOfBirth),
+        dateOfBirth = "1980-1-1"// DateTimeFormatter.ofPattern("yyyy-MM-dd").format(user.dateOfBirth),
     )
 }

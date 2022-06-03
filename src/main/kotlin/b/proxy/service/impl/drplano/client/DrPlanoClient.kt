@@ -6,6 +6,7 @@ import b.proxy.service.impl.drplano.client.dto.DrPlanoSlotInfo
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import khttp.responses.Response
+import org.json.JSONObject
 import java.time.OffsetDateTime
 
 interface DrPlanoClient {
@@ -78,7 +79,12 @@ class DrPlanoClientImpl(
                 "Origin" to origin,
                 "Referer" to "$origin/",
                 "Host" to "backend.dr-plano.com",
-                "Accept-Language" to "en-US,en;q=0.5"
+                "Accept-Language" to "en-US,en;q=0.5",
+                "User-Agent" to "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:100.0) Gecko/20100101 Firefox/100.0",
+                "TE" to "trailers",
+                "Accept-Encoding" to "gzip, deflate, br",
+                "Sec-Fetch-Site" to "cross-site",
+                "Connection" to "keep-alive"
             )
         )
     }
