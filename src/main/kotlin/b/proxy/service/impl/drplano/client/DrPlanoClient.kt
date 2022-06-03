@@ -6,6 +6,7 @@ import b.proxy.service.impl.drplano.client.dto.DrPlanoSlotInfo
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import khttp.responses.Response
+import org.json.JSONObject
 import java.time.OffsetDateTime
 
 interface DrPlanoClient {
@@ -73,7 +74,7 @@ class DrPlanoClientImpl(
     override fun book(bookingRequest: DrPlanoBookingRequest, origin: String): Response {
         return httpClient.post(
             url = baseUrl + "bookable",
-            body = objectMapper.writeValueAsString(bookingRequest),
+            body = JSONObject(objectMapper.writeValueAsString(bookingRequest)),
             headers = mapOf(
                 "Origin" to origin,
                 "Referer" to "$origin/",

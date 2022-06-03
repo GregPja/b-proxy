@@ -25,7 +25,7 @@ class HttpClient {
     ): Response {
         return khttp.post(
             url = url,
-            data = body,
+            json = body,
             headers = headers + ("Content-Type" to "application/json"),
             params = params.mapValues { it.value.toString() }
         ).also { println("POST -> ${it.url}") }
