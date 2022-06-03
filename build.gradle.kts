@@ -18,13 +18,12 @@ repositories {
     mavenCentral()
     maven(url = "https://jitpack.io")
 }
-
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:$springVersion")
     //implementation("org.springframework.boot:spring-boot-starter-jooq:$springVersion")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("com.github.jkcclemens:khttp:-SNAPSHOT")
+    implementation("com.github.jkcclemens:khttp:0.1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.2")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.6.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springVersion")

@@ -48,6 +48,9 @@ class DrPlanoService(
                 println(it.statusCode)
                 println(String(it.content))
                 println(String(it.request.body))
+                if(it.statusCode > 203){
+                    throw Exception("Ops, couldn't book because we got not 200")
+                }
             }
         }
     }
