@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bouldering-proxy-fe # this is the name of my development
+  labels:
+    app: proxy-fe # this is the tag of the development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: proxy-fe # this tells the "replica" which "tag" to create
+  template:
+    metadata:
+      labels:
+        app: proxy-fe # not sure about this yet
+    spec:
+      containers:
+        - name: proxy-fe-container # this is the name of the container inside the POD
+          image: fe-foxy:latest # the image that you want to pull and deploy (:latest isn't a good practice)
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+          command:
+            - "python3"
+          args:
+            - "main.py"
+          env:
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: fe-secrets
+                  key: telegram_token
+            - name: BACKEND_URL
+              value: "http://backend-service/"

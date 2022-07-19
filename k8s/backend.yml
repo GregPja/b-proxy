@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bouldering-proxy-backend # this is the name of my development and will be the displayed name when "kubectl get pods"
+  labels:
+    app: proxy-backend # this is the tag of the development
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: proxy-backend # this tells the "replica" which "tag" to create
+  template:
+    metadata:
+      labels:
+        app: proxy-backend # not sure about this yet
+    spec:
+      containers:
+        - name: proxy-backend-container # this is the name of the container inside the POD
+          image: proxy-booking-system:latest # the image that you want to pull and deploy (:latest isn't a good practice)
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+              name: http
+          command:
+           - "java"
+          args:
+          - "-jar"
+          - "app.jar"
+          volumeMounts: # mounting the volume that is declared later
+            - name: config-map # the name of the volume you are configuring
+              mountPath: application.yml # this is the path of where you want to mount the config in your volume
+              subPath: configuration-subpath-b-proxy.yml # this is the "subpath" of the config-map from where are fetching the configuration
+      volumes: # declaration of the volumes
+        - name: config-map # the name of the volume you are declaring
+          configMap:
+            name: bouldering-proxy-backend # the name of the config map you are referring for this volume

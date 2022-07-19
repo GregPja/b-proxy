@@ -1,0 +1,108 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bouldering-proxy-backend # this is the name of your config-map and you will find it by doing "kubeclt get configmaps"
+  namespace: default
+data: # by doing this you are telling k8s to put that configuration into a file. You can have multiple declaration, but
+  # it's probably better to keep 1 config per file
+  configuration-subpath-b-proxy.yml: | # application-application.yml
+    configuration: 
+      dr-plano:
+        - name: "BASEMENT"
+          clientId: 122632017
+          shiftModelId: 155581628
+          urbanSportClubTariffId: 155589630
+          origin: "https://basement-boulderstudio.de"
+          active: true
+        - name: "BRIGHT-SIDE"
+          clientId: 132889524
+          shiftModelId: 155582323
+          urbanSportClubTariffId: 166426588
+          origin: "https://www.boulder-project.de/"
+          active: true
+        - name: "BK"
+          clientId: 67359314
+          shiftModelId: 67361411
+          urbanSportClubTariffId: 67783230
+          origin: "https://boulderklub.de"
+          active: true
+        - name: "BOULDER-GARDEN"
+          shiftModelId: 67359814
+          origin: "https://bouldergarten.de"
+          active: true
+          clientId: 66563713
+          urbanSportClubTariffId: 68083827
+      web-climber:
+        - name: "KEGEL"
+          webClimberId: 168
+          specialPath: "bouldern-urban-sports-club"
+          active: false
+        - name: "OST-BLOCK"
+          webClimberId: 153
+          specialPath: "reservierung-zeitslot"
+          active: false
+    users:
+      map:
+        130755048:
+          firstName: "Marco"
+          lastName: "Gregorini"
+          email: "gregorini.marco91@gmail.com"
+          urbanSportClubId: "100072385"
+          dateOfBirth: "21.12.1991"
+          streetName: "Buesingstr. 3"
+          city: "Berlin"
+          phoneNumber: "+393472724839"
+          postalCode: "12161"
+        800113501:
+          firstName: "Jacopo"
+          lastName: "Melloni"
+          email: "jac.melloni@gmail.com"
+          urbanSportClubId: "100031709"
+          dateOfBirth: "26.06.1992"
+          streetName: "Luetticher Str. 42"
+          city: "Berlin"
+          phoneNumber: "017657789598"
+          postalCode: "13353"
+        595354323:
+          firstName: "Juan Pablo"
+          lastName: "Denis Otárola"
+          email: "jp.deniso@gmail.com"
+          urbanSportClubId: "519484283"
+          dateOfBirth: "18.05.1990"
+          streetName: "Hufelandstr. 42"
+          city: "Berlin"
+          phoneNumber: "01756797856"
+          postalCode: "10407"
+        46824171:
+          firstName: "Christian"
+          lastName: "Hoepfner"
+          email: "chriz.hoepfner@gmail.com"
+          urbanSportClubId: "852729696"
+          dateOfBirth: "17.04.1988"
+          streetName: "Giselastrasse 35"
+          city: "Berlin"
+          phoneNumber: "+4917662349527"
+          postalCode: "10317"
+        1500141393:
+          firstName: "Atakan"
+          lastName: "Arikan"
+          email: "marqhen@gmail.com"
+          urbanSportClubId: "229935048"
+          dateOfBirth: "13.01.1993"
+          streetName: "Kantstrastr. 142"
+          city: "Berlin"
+          phoneNumber: "01783166991"
+          postalCode: "10623"
+        1562877523:
+          firstName: "Pablo"
+          lastName: "Medina"
+          email: "pabloserranomedina@msn.com"
+          urbanSportClubId: "140985105"
+          dateOfBirth: "19.12.1993"
+          streetName: "Hebbelstrasse"
+          city: "Berlin"
+          phoneNumber: "+34660576791"
+          postalCode: "10585"
+    
+    server:
+      port: 8080
