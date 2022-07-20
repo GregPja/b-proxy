@@ -5,7 +5,7 @@ metadata:
   labels:
     app: proxy-backend # this is the tag of the development
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: proxy-backend # this tells the "replica" which "tag" to create
@@ -14,10 +14,11 @@ spec:
       labels:
         app: proxy-backend # not sure about this yet
     spec:
+      imagePullSecrets:
+        - name: regcred
       containers:
         - name: proxy-backend-container # this is the name of the container inside the POD
-          image: proxy-booking-system:latest # the image that you want to pull and deploy (:latest isn't a good practice)
-          imagePullPolicy: Never
+          image: giolito/proxy-booking-system:0.0.1 # the image that you want to pull and deploy (:latest isn't a good practice)
           ports:
             - containerPort: 8080
               protocol: TCP
